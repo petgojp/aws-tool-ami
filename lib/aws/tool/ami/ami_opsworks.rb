@@ -6,18 +6,21 @@ require 'pp'
 
 class AmiOpsworks
 
-  @config
-
   @opsworks
   @ec2
 
-  def initialize(config_path = nil)
+  def initialize(access_key_id, secret_access_key)
 
-    @config = get_config(config_path)
+    access_key_id = access_key_id || ENV['AMI_AWS_ACCESS_KEY_ID']
+    secret_access_key = secret_access_key || ENV['AMI_AWS_SECRET_ACCESS_KEY']
+
+    if access_key_id == nil || secret_access_key == nil
+      raise 'No access_key_id or secret_access_key was specified'
+    end
 
     Aws.config.update(
         region: 'ap-northeast-1',
-        credentials: Aws::Credentials.new(@config['credentials']['access_key_id'], @config['credentials']['secret_access_key'])
+        credentials: Aws::Credentials.new(access_key_id, secret_access_key)
     )
 
     @opsworks = Aws::OpsWorks::Client.new(region: 'us-east-1')
@@ -183,26 +186,6 @@ class AmiOpsworks
       raise 'No stack found'
     end
     found_stack
-
-  end
-
-  def get_config(config_path = nil)
-
-    config = {}
-    begin
-
-      if config_path != nil
-        File.open(config_path) do |file|
-          config = JSON.parse(file.read)
-        end
-      else
-        raise 'No configuration file was specified'
-      end
-
-    rescue => ex
-      raise ex
-    end
-    config
 
   end
 

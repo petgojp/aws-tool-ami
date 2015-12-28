@@ -21,18 +21,14 @@ $ bundle install
 
 ## 事前準備
 
-#### 設定ファイルの内容
+#### 環境変数
 
-configで渡すJSONファイルは下記の内容になります。
+本ツールが利用するAWSのクレデンシャルは下記の環境変数に設定します。
 
-```json
-{
-  "credentials": {
-    "access_key_id": "access_key_id",
-    "secret_access_key": "secret_access_key"
-  }
-}
-```
+* STAGING_AWS_ACCESS_KEY_ID
+* STAGING_AWS_SECRET_ACCESS_KEY
+
+なお、これらについてはパラメーターで渡すこともできます。
 
 #### 適切なIAMカスタムポリシー例
 
@@ -62,14 +58,14 @@ configで渡すJSONファイルは下記の内容になります。
 
 ## 利用方法
 
-bundle exec aws-tool-amiでヘルプが表示されます。
+bundle exec aws-tool-amiでヘルプが表示されます。aws-tool-ami help create_amiでさらにパラメーター情報などについて調べる事ができます。
 
 ```bash
 $ bundle exec aws-tool-ami
 Commands:
-  aws-tool-ami create_ami [STACK_NAME] --config=CONFIG    # Create AMI of instances which belongs to specified stack
-  aws-tool-ami help [COMMAND]                             # Describe available commands or one specific command
-  aws-tool-ami scavenge_ami [STACK_NAME] --config=CONFIG  # Scavenge outdated AMIs which belongs to specified stack
+  aws-tool-ami create_ami [STACK_NAME]    # Create AMI of instances which belongs to specified stack
+  aws-tool-ami help [COMMAND]             # Describe available commands or one specific command
+  aws-tool-ami scavenge_ami [STACK_NAME]  # Scavenge outdated AMIs which belongs to specified stack
 ```
 
 #### create_ami
