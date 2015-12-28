@@ -2,7 +2,7 @@ require 'aws/tool/ami/version'
 
 require 'thor'
 
-require 'aws/tool/ami_opsworks'
+require 'aws/tool/ami/ami_opsworks'
 
 module Aws
   module Tool
