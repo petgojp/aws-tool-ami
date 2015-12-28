@@ -25,8 +25,8 @@ $ bundle install
 
 本ツールが利用するAWSのクレデンシャルは下記の環境変数に設定します。
 
-* STAGING_AWS_ACCESS_KEY_ID
-* STAGING_AWS_SECRET_ACCESS_KEY
+* AMI_AWS_ACCESS_KEY_ID
+* AMI_AWS_SECRET_ACCESS_KEY
 
 なお、これらについてはパラメーターで渡すこともできます。
 
