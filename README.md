@@ -67,9 +67,9 @@ bundle exec aws-tool-amiでヘルプが表示されます。
 ```bash
 $ bundle exec aws-tool-ami
 Commands:
-  console create_ami [STACK_NAME] --config=CONFIG    # Create AMI of instances which belongs to specified stack
-  console help [COMMAND]                             # Describe available commands or one specific command
-  console scavenge_ami [STACK_NAME] --config=CONFIG  # Scavenge outdated AMIs which belongs to specified stack
+  aws-tool-ami create_ami [STACK_NAME] --config=CONFIG    # Create AMI of instances which belongs to specified stack
+  aws-tool-ami help [COMMAND]                             # Describe available commands or one specific command
+  aws-tool-ami scavenge_ami [STACK_NAME] --config=CONFIG  # Scavenge outdated AMIs which belongs to specified stack
 ```
 
 #### create_ami
@@ -86,4 +86,12 @@ $ bundle exec aws-tool-ami create_ami corp --config ./config.json
 
 ```
 $ bundle exec aws-tool-ami scavenge_ami corp --config ./config.json
+```
+
+## ツールの更新について
+
+下記のコマンドでツールを最新化します。
+
+```bash
+$ bundle update
 ```
