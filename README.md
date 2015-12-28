@@ -73,7 +73,7 @@ Commands:
 AMIを作成します。インスタンスの再起動は発生しません。
 
 ```
-$ bundle exec aws-tool-ami create_ami corp --config ./config.json
+$ bundle exec aws-tool-ami create_ami corp
 ```
 
 #### scavenge_ami
@@ -81,7 +81,7 @@ $ bundle exec aws-tool-ami create_ami corp --config ./config.json
 作成後一定期間経過したAMIを削除します。
 
 ```
-$ bundle exec aws-tool-ami scavenge_ami corp --config ./config.json
+$ bundle exec aws-tool-ami scavenge_ami corp
 ```
 
 ## ツールの更新について
