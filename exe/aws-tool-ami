@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
 require "aws/tool/ami"
+
+Aws::Tool::Ami::CLI.start
