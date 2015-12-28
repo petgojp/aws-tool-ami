@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "CLI tool to backup AMI"
   spec.description   = "CLI tool to backup AMI"
-  spec.homepage      = "https://github.com/petgojp/aws-tool-staging"
+  spec.homepage      = "https://github.com/petgojp/aws-tool-ami"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"

@@ -10,18 +10,20 @@ module Aws
       class CLI < Thor
 
         desc 'create_ami [STACK_NAME]', 'Create AMI of instances which belongs to specified stack'
+        option :config, :required => true
         def create_ami(stack_name)
 
-          ami = AmiOpsworks.new('config.json')
-          ami.backup_ami(stack_name)
+          tool = AmiOpsworks.new(options[:config])
+          tool.backup_ami(stack_name)
 
         end
 
         desc 'scavenge_ami [STACK_NAME]', 'Scavenge outdated AMIs which belongs to specified stack'
+        option :config, :required => true
         def scavenge_ami(stack_name)
 
-          ami = AmiOpsworks.new('config.json')
-          ami.scavenge_amis(stack_name, remain_days_to_scavenge = 7)
+          tool = AmiOpsworks.new(options[:config])
+          tool.scavenge_amis(stack_name, remain_days_to_scavenge = 7)
 
         end
 
