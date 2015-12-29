@@ -9,10 +9,10 @@ module Aws
     module Ami
       class CLI < Thor
 
-        desc 'create_ami [STACK_NAME]', 'Create AMI of instances which belongs to specified stack'
+        desc 'backup_ami [STACK_NAME]', 'Backup AMI of instances which belongs to specified stack'
         option :access_key_id
         option :secret_access_key
-        def create_ami(stack_name)
+        def backup_ami(stack_name)
 
           tool = AmiOpsworks.new(options[:access_key_id], options[:secret_access_key])
           tool.backup_ami(stack_name)

@@ -10,7 +10,7 @@ OpsWorksから起動しているEC2インスタンスのAMIのバックアップ
 
 ```ruby
 source 'https://rubygems.org'
-gem "aws-tool-ami", :git => "git@github.com:petgojp/aws-tool-ami.git", :branch => "master"
+gem "aws-tool-ami", :git => "https://github.com/petgojp/aws-tool-ami.git", :branch => "master"
 ```
 
 Gemfileのあるディレクトリで下記のコマンドを実行します。
@@ -58,22 +58,22 @@ $ bundle install
 
 ## 利用方法
 
-bundle exec aws-tool-amiでヘルプが表示されます。aws-tool-ami help create_amiでさらにパラメーター情報などについて調べる事ができます。
+bundle exec aws-tool-amiでヘルプが表示されます。aws-tool-ami help backup_amiでさらにパラメーター情報などについて調べる事ができます。
 
 ```bash
 $ bundle exec aws-tool-ami
 Commands:
-  aws-tool-ami create_ami [STACK_NAME]    # Create AMI of instances which belongs to specified stack
+  aws-tool-ami backup_ami [STACK_NAME]    # Backup AMI of instances which belongs to specified stack
   aws-tool-ami help [COMMAND]             # Describe available commands or one specific command
   aws-tool-ami scavenge_ami [STACK_NAME]  # Scavenge outdated AMIs which belongs to specified stack
 ```
 
-#### create_ami
+#### backup_ami
 
 AMIを作成します。インスタンスの再起動は発生しません。
 
 ```
-$ bundle exec aws-tool-ami create_ami corp
+$ bundle exec aws-tool-ami backup_ami corp
 ```
 
 #### scavenge_ami
