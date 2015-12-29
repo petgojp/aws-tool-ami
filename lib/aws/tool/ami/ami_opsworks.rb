@@ -31,15 +31,15 @@ class AmiOpsworks
   def backup_ami(stack_name)
 
     stack = find_stack(stack_name)
-    layers = find_layers(stack['stack_id'])
+    layers = find_layers(stack.stack_id)
 
     layers.each do |layer|
-      pp layer['name']
+      pp layer.name
 
-      instance = find_instance_by_layer(layer['layer_id'])
-      instance_id = instance['ec2_instance_id']
+      instance = find_instance_by_layer(layer.layer_id)
+      instance_id = instance.ec2_instance_id
 
-      image_name = "#{stack_name}-#{layer['shortname']}-#{DateTime.now.strftime('%Y%m%d%H%M')}"
+      image_name = "#{stack_name}-#{layer.shortname}-#{DateTime.now.strftime('%Y%m%d%H%M')}"
       image_id = create_image(instance_id, image_name)
       sleep(1)
       add_tag(image_id, stack_name, DateTime.now.strftime('%Y-%m-%d'))
@@ -47,7 +47,7 @@ class AmiOpsworks
       resp = @ec2.describe_images(
           image_ids: [image_id]
       )
-      snapshot_id = resp['images'][0]['block_device_mappings'][0]['ebs']['snapshot_id']
+      snapshot_id = resp.images[0].block_device_mappings[0].ebs.snapshot_id
       add_tag(snapshot_id, stack_name, DateTime.now.strftime('%Y-%m-%d'))
 
       pp "instance_id = #{instance_id}, image_id = #{image_id}, snapshot_id: #{snapshot_id}"
@@ -114,10 +114,10 @@ class AmiOpsworks
     end
 
     image_ids = images.map do |image|
-      image['image_id']
+      image.image_id
     end
     snapshot_ids = images.map do |image|
-      image['block_device_mappings'][0]['ebs']['snapshot_id']
+      image.block_device_mappings[0].ebs.snapshot_id
     end
 
     [image_ids, snapshot_ids]
@@ -149,7 +149,7 @@ class AmiOpsworks
         description: 'Auto backuped AMI',
         no_reboot: true
     )
-    resp['image_id']
+    resp.image_id
 
   end
 
@@ -177,8 +177,8 @@ class AmiOpsworks
 
     found_stack = nil
     resp = @opsworks.describe_stacks
-    resp['stacks'].each do |stack|
-      if stack_name == stack['name'] then
+    resp.stacks.each do |stack|
+      if stack_name == stack.name then
         found_stack = stack
       end
     end
